@@ -329,11 +329,19 @@
   ```
 
 * <a name="predicate-funs-name"></a>
-  The names of predicate functions (a function that return a boolean value) should have a trailing question mark `?` rather than a leading `is_` or similar.
+  The names of predicate functions (a function that return a boolean value) should have a trailing question mark `?` rather than a leading `has_` or similar.
   <sup>[[link](#predicate-funs-name)]</sup>
 
   ```elixir
   def leap?(year) do
+    #...
+  end
+  ```
+
+  Always use a leading `is_` when naming guard-safe predicate macros.
+
+  ```elixir
+  defmacro is_date(month, day) do
     #...
   end
   ```
