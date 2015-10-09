@@ -64,7 +64,7 @@
   ```
 
 * <a name="guard-clauses"></a>
-  Indent guard `when` clauses as much as the function definitions they apply to.
+  Indent `when` guard clauses as much as the function definitions they apply to.
   <sup>[[link](#guard-clauses)]</sup>
 
   ```elixir
@@ -120,7 +120,7 @@
 ### Syntax
 
 * <a name="fun-parens"></a>
-  Always use parentheses around `def` arguments, don't omit them even when the function has no arguments.
+  Always use parentheses around `def` arguments, don't omit them even when a function has no arguments.
   <sup>[[link](#fun-parens)]</sup>
 
   ```elixir
