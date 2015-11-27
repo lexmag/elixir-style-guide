@@ -144,15 +144,24 @@
   ```
 
 * <a name="zero-arity-parens"></a>
-  Parentheses are a must for local zero-arity calls.
+  Parentheses are a must for __local__ zero-arity function calls and definitions.
   <sup>[[link](#zero-arity-parens)]</sup>
 
   ```elixir
   # Bad
   pid = self
+  def new, do: %MapSet{}
 
   # Good
   pid = self()
+  def new(), do: %MapSet{}
+  config = IEx.Config.new
+  ```
+
+  The same applies to __local__ one-arity function calls in pipelines.
+
+  ```
+  String.strip(input) |> decode()
   ```
 
 * <a name="pipeline-operator"></a>
@@ -272,7 +281,7 @@
 
 ### Naming
 
-* <a name="snake-case-atoms-funs-vars"></a>
+* <a name="snake-case-atoms-funs-vars-attrs"></a>
   Use `snake_case` for atoms, functions, variables and module attributes.
   <sup>[[link](#snake-case-atoms-funs-vars-attrs)]</sup>
 
