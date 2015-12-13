@@ -160,7 +160,7 @@
 
   The same applies to __local__ one-arity function calls in pipelines.
 
-  ```
+  ```elixir
   String.strip(input) |> decode()
   ```
 
@@ -277,6 +277,18 @@
   # Good
   "http://" <> _rest = input
   <<first::utf8>> <> rest = input
+  ```
+
+* <a name="hex-literals"></a>
+  Use uppercase in definition of hex literals.
+  <sup>[[link](#hex-literals)]</sup>
+
+  ```elixir
+  # Bad
+  <<0xef, 0xbb, 0xbf>>
+
+  # Good
+  <<0xEF, 0xBB, 0xBF>>
   ```
 
 ### Naming
