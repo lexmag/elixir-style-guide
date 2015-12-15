@@ -120,7 +120,9 @@
 ### Syntax
 
 * <a name="fun-parens"></a>
-  Always use parentheses around `def` arguments, don't omit them even when a function has no arguments.
+  Always use parentheses around `def` arguments if the function takes one
+  or more arguments. If the function doesn't take any arguments, don't use
+  parentheses.
   <sup>[[link](#fun-parens)]</sup>
 
   ```elixir
@@ -129,7 +131,7 @@
     #...
   end
 
-  def main do
+  def main() do
     #...
   end
 
@@ -138,7 +140,7 @@
     #...
   end
 
-  def main() do
+  def main do
     #...
   end
   ```
