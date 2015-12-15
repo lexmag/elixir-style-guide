@@ -197,6 +197,22 @@
   result = String.strip(input)
   ```
 
+* <a name="binary-operators-at-eols"></a>
+  When making a multi-line expression, keep binary operators (the only exception is the `|>` operator) at the ends of the lines.
+  <sup>[[link](#binary-operators-at-eols)]</sup>
+
+  ```elixir
+  # Bad
+  "No matching message.\n"
+  <> "Process mailbox:\n"
+  <> mailbox
+
+  # Good
+  "No matching message.\n" <>
+  "Process mailbox:\n" <>
+  mailbox
+  ```
+
 * <a name="no-else-with-unless"></a>
   Never use `unless` with `else`. Rewrite these with the positive case first.
   <sup>[[link](#no-else-with-unless)]</sup>
