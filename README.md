@@ -246,7 +246,7 @@
   ```
 
 * <a name="true-in-cond"></a>
-  Always use `true` as the last condition of a `cond` statement.
+  Always use `true` as the always-match condition of a `cond` statement.
   <sup>[[link](#true-in-cond)]</sup>
 
   ```elixir
@@ -254,7 +254,7 @@
   cond do
     char in ?0..?9 -> char - ?0
     char in ?A..?Z -> char - ?A + 10
-    :other         -> char - ?a + 10
+    :else          -> char - ?a + 10
   end
 
   # Good
