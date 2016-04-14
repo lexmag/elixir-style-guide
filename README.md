@@ -117,6 +117,18 @@
   End each file with a newline.
   <sup>[[link](#newline-eof)]</sup>
 
+* <a name="trailing-comma"></a>
+  When dealing with lists, maps, structs, or tuples whose elements span over multiple lines and are on separate lines with regard to the enclosing brackets, it's advised to use a trailing comma even for the last element:
+  <sup>[[link](#trailing-comma)]</sup>
+
+  ```elixir
+  [
+    :foo,
+    :bar,
+    :baz,
+  ]
+  ```
+
 ### Syntax
 
 * <a name="fun-parens"></a>
