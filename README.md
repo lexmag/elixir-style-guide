@@ -416,20 +416,21 @@
 
 ### Modules
 
-* <a name="consistent-module-structure"></a>
-  Use a consistent structure in module definitions.
-  <sup>[[link](#consistent-module-structure)]</sup>
+* <a name="module-layout"></a>
+  Use a consistent structure when calling `use`/`import`/`alias`/`require`: call
+  them in this order and group multiple calls to each of them.
+  <sup>[[link](#module-layout)]</sup>
 
   ```elixir
-  @compile :inline_list_funcs
-
   use GenServer
 
-  require Logger
-
-  alias Kernel.Typespec
-
   import Bitwise
+  import Kernel, except: [length: 1]
+
+  alias Mix.Utils
+  alias MapSet, as: Set
+
+  require Logger
   ```
 
 * <a name="current-module-reference"></a>
