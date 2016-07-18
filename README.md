@@ -64,12 +64,12 @@
   ```
 
 * <a name="guard-clauses"></a>
-  Indent `when` guard clauses as much as the function definitions they apply to.
+  Indent `when` guard clauses **two levels** more than the function definition they apply to.
   <sup>[[link](#guard-clauses)]</sup>
 
   ```elixir
   def format_error({exception, stacktrace})
-  when is_list(stacktrace) and stacktrace != [] do
+      when is_list(stacktrace) and stacktrace != [] do
     #...
   end
   ```
