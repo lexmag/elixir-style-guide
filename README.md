@@ -225,26 +225,6 @@
   mailbox
   ```
 
-* <a name="no-else-with-unless"></a>
-  Never use `unless` with `else`. Rewrite these with the positive case first.
-  <sup>[[link](#no-else-with-unless)]</sup>
-
-  ```elixir
-  # Bad
-  unless Enum.empty?(coll) do
-    :ok
-  else
-    :error
-  end
-
-  # Good
-  if Enum.empty?(coll) do
-    :error
-  else
-    :ok
-  end
-  ```
-
 * <a name="no-nil-else"></a>
   Omit `else` option in `if` and `unless` clauses if it returns `nil`.
   <sup>[[link](#no-nil-else)]</sup>
@@ -317,6 +297,28 @@
 
   # Good
   <<0xEF, 0xBB, 0xBF>>
+  ```
+
+### Code improvements
+
+* <a name="no-else-with-unless"></a>
+  Never use `else` in an `unless` expression. Rewrite the `unless` using an `if` with the positive case first.
+  <sup>[[link](#no-else-with-unless)]</sup>
+
+  ```elixir
+  # Bad
+  unless Enum.empty?(collection) do
+    :ok
+  else
+    :error
+  end
+
+  # Good
+  if Enum.empty?(coll) do
+    :error
+  else
+    :ok
+  end
   ```
 
 ### Naming
