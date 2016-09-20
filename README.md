@@ -109,6 +109,20 @@
   num = 1_000_000
   ```
 
+* <a name="quotes-around-atoms"></a>
+  When using atom literals that need to be quoted because they contain characters that are invalid in atoms (such as `:"foo-bar"`), use double quotes around the atom name:
+  <sup>[[link](#quotes-around-atoms)]</sup>
+
+  ```elixir
+  # Bad
+  :'foo-bar'
+  :'atom number #{index}'
+
+  # Good
+  :"foo-bar"
+  :"atom number #{index}"
+  ```
+
 * <a name="no-trailing-whitespaces"></a>
   Avoid trailing whitespaces.
   <sup>[[link](#no-trailing-whitespaces)]</sup>
