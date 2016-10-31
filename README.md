@@ -73,7 +73,7 @@
     # ...
   end
 
-  defmacro dngettext(domain, msgid, msgid_plural, n) do
+  defmacro dngettext(domain, msgid, msgid_plural, count) do
            when is_binary(msgid) and is_binary(msgid_plural) do
     # ...
   end
