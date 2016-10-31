@@ -64,13 +64,18 @@
   ```
 
 * <a name="guard-clauses"></a>
-  Indent `when` guard clauses **two levels** more than the function definition they apply to.
+  Indent `when` guard clauses on the same level as the function/macro signature in the definition they're part of. Do this only if you cannot fit the `when` guard on the same line as the definition.
   <sup>[[link](#guard-clauses)]</sup>
 
   ```elixir
   def format_error({exception, stacktrace})
       when is_list(stacktrace) and stacktrace != [] do
-    #...
+    # ...
+  end
+
+  defp format_exit({exception, maybe_stacktrace} = reason, joiner)
+       when is_list(maybe_stacktrace) and maybe_stacktrace !== [] do
+    # ...
   end
   ```
 
