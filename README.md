@@ -73,8 +73,8 @@
     # ...
   end
 
-  defp format_exit({exception, maybe_stacktrace} = reason, joiner)
-       when is_list(maybe_stacktrace) and maybe_stacktrace !== [] do
+  defp format_exit({exception, stacktrace} = reason, joiner)
+       when is_list(stacktrace) and stacktrace != [] and is_binary(joiner) do
     # ...
   end
   ```
