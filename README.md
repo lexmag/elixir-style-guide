@@ -73,8 +73,8 @@
     # ...
   end
 
-  defp format_exit({exception, stacktrace} = reason, joiner)
-       when is_list(stacktrace) and stacktrace != [] and is_binary(joiner) do
+  defmacro dngettext(domain, msgid, msgid_plural, count) do
+           when is_binary(msgid) and is_binary(msgid_plural) do
     # ...
   end
   ```
