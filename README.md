@@ -90,8 +90,8 @@
 
   prefix = case base do
              :binary -> "0b"
-             :octal  -> "0o"
-             :hex    -> "0x"
+             :octal -> "0o"
+             :hex -> "0x"
            end
 
   # Good
@@ -101,8 +101,8 @@
 
   prefix = case base do
     :binary -> "0b"
-    :octal  -> "0o"
-    :hex    -> "0x"
+    :octal -> "0o"
+    :hex -> "0x"
   end
   ```
 
@@ -147,6 +147,30 @@
     :baz,
   ]
   ```
+
+* <a name="expression-group-alignment"></a>
+  Avoid aligning expression groups:
+  <sup>[[link](#expression-group-alignment)]</sup>
+
+  ```elixir
+  # Bad
+  module = env.module
+  arity  = length(args)
+
+  def inspect(false), do: "false"
+  def inspect(true),  do: "true"
+  def inspect(nil),   do: "nil"
+
+  # Good
+  module = env.module
+  arity = length(args)
+
+  def inspect(false), do: "false"
+  def inspect(true), do: "true"
+  def inspect(nil), do: "nil"
+  ```
+
+  The same non-alignment rule applies to `<-` and `->` clauses as well.
 
 ### Syntax
 
