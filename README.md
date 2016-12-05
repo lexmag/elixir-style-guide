@@ -529,7 +529,7 @@
 ### Structs
 
 * <a name="defstruct-fields-default"></a>
-  When calling `defstruct/1`, don't explicitly use `nil` for fields that default to `nil`.
+  When calling `defstruct/1`, don't explicitly specify `nil` for fields that default to `nil`.
   <sup>[[link](#defstruct-fields-default)]</sup>
 
   ```elixir
