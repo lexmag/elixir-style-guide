@@ -270,7 +270,7 @@
   ```
 
 * <a name="with-indentation"></a>
-  Use the indentations shown below for the `with` special form:
+  Use the indentation shown below for the `with` special form:
   <sup>[[link](#with-indentation)]</sup>
 
   ```elixir
