@@ -283,7 +283,7 @@
   end
   ```
 
-  Always use the indentation above if there's an `else` clause. If there isn't, the following indentation works as well:
+  Always use the indentation above if there's an `else` option. If there isn't, the following indentation works as well:
 
   ```elixir
   with {:ok, date} <- Calendar.ISO.date(year, month, day),
