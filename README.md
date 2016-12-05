@@ -269,6 +269,29 @@
   mailbox
   ```
 
+* <a name="with-indentation"></a>
+  Use the indentations shown below for the `with` special form:
+  <sup>[[link](#with-indentation)]</sup>
+
+  ```elixir
+  with {year, ""} <- Integer.parse(year),
+       {month, ""} <- Integer.parse(month),
+       {day, ""} <- Integer.parse(day) do
+    new(year, month, day)
+  else
+    _ ->
+      {:error, :invalid_format}
+  end
+  ```
+
+  Always use the indentation above if there's an `else` option. If there isn't, the following indentation works as well:
+
+  ```elixir
+  with {:ok, date} <- Calendar.ISO.date(year, month, day),
+       {:ok, time} <- Time.new(hour, minute, second, microsecond),
+       do: new(date, time)
+  ```
+
 * <a name="no-else-with-unless"></a>
   Never use `unless` with `else`. Rewrite these with the positive case first.
   <sup>[[link](#no-else-with-unless)]</sup>
