@@ -12,6 +12,7 @@
 * [Comments](#comments)
 * [Modules](#modules)
 * [Regular Expressions](#regular-expressions)
+* [Structs](#structs)
 * [Exceptions](#exceptions)
 
 ### Source Code Layout
@@ -524,6 +525,20 @@
 * <a name="caret-and-dollar-regexp"></a>
   Be careful with `^` and `$` as they match start and end of the __line__ respectively. If you want to match the __whole__ string use: `\A` and `\z` (not to be confused with `\Z` which is the equivalent of `\n?\z`).
   <sup>[[link](#caret-and-dollar-regexp)]</sup>
+
+### Structs
+
+* <a name="defstruct-fields-default"></a>
+  When calling `defstruct/1`, don't explicitly specify `nil` for fields that default to `nil`.
+  <sup>[[link](#defstruct-fields-default)]</sup>
+
+  ```elixir
+  # Bad
+  defstruct first_name: nil, last_name: nil, admin?: false
+
+  # Good
+  defstruct [:first_name, :last_name, admin?: false]
+  ```
 
 ### Exceptions
 
