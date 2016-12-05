@@ -12,6 +12,7 @@
 * [Comments](#comments)
 * [Modules](#modules)
 * [Regular Expressions](#regular-expressions)
+* [Structs](#structs)
 * [Exceptions](#exceptions)
 
 ### Source Code Layout
