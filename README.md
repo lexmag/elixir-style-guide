@@ -288,7 +288,7 @@
   ```elixir
   with {:ok, date} <- Calendar.ISO.date(year, month, day),
        {:ok, time} <- Time.new(hour, minute, second, microsecond),
-    do: new(date, time)
+       do: new(date, time)
   ```
 
 * <a name="no-else-with-unless"></a>
