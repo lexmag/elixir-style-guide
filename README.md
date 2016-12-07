@@ -309,7 +309,7 @@
 
   ```elixir
   for partition <- 0..(partitions - 1),
-      pair <- safe_lookup_second(key_ets!(registry, partition), key),
+      pair <- safe_lookup(registry, partition, key),
       into: [],
       do: pair
   ```
