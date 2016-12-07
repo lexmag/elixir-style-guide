@@ -612,7 +612,7 @@
   assert Atom.to_string(:"héllo") == "héllo"
   ```
 
-  When using the pattern match operator (`=`), put the pattern on the left-hand side (as it won't work otherwise).
+  When using the match operator `=`, put the pattern on the left-hand side (as it won't work otherwise).
 
   ```elixir
   assert {:error, _reason} = File.stat("./non_existent_file")
