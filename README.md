@@ -14,6 +14,7 @@
 * [Regular Expressions](#regular-expressions)
 * [Structs](#structs)
 * [Exceptions](#exceptions)
+* [ExUnit](#exunit)
 
 ### Source Code Layout
 
@@ -616,6 +617,27 @@
 
   ```elixir
   Mix.raise "Could not find dependency"
+  ```
+
+
+### ExUnit
+
+* <a name="exunit-assertion-side"></a>
+  When asserting (or refuting) something with comparison operators (such as `==`, `<`, `>=`, and similar), put the expression being tested on the left-hand side of the operator and the value you're testing against on the right-hand side.
+  <sup>[[link](#exunit-assertion-side)]</sup>
+
+  ```elixir
+  # Bad
+  assert "héllo" == Atom.to_string(:"héllo")
+
+  # Good
+  assert Atom.to_string(:"héllo") == "héllo"
+  ```
+
+  When using the match operator `=`, put the pattern on the left-hand side (as it won't work otherwise).
+
+  ```elixir
+  assert {:error, _reason} = File.stat("./non_existent_file")
   ```
 
 ## License
