@@ -615,7 +615,7 @@
   When using the pattern match operator (`=`), put the pattern on the left-hand side (as it won't work otherwise).
 
   ```elixir
-  assert {3, _} = Code.eval_string("a + b", [a: 1, b: 2], Macro.Env.location(__ENV__))
+  assert {:error, _reason} = File.read("./non_existent_file")
   ```
 
 ## License
