@@ -292,6 +292,28 @@
        do: new(date, time)
   ```
 
+* <a name="for-indentation"></a>
+  Use the indentation shown below for the `for` special form:
+  <sup>[[link](#for-indentation)]</sup>
+
+  ```elixir
+  for {alias, _module} <- aliases_from_env(server),
+      [name] = Module.split(alias),
+      starts_with?(name, hint),
+      into: [] do
+    %{kind: :module, type: :alias, name: name}
+  end
+  ```
+
+  If the body of the `do` block is short, the following indentation works as well:
+
+  ```elixir
+  for partition <- 0..(partitions - 1),
+      pair <- safe_lookup(registry, partition, key),
+      into: [],
+      do: pair
+  ```
+
 * <a name="no-else-with-unless"></a>
   Never use `unless` with `else`. Rewrite these with the positive case first.
   <sup>[[link](#no-else-with-unless)]</sup>
