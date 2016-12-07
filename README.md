@@ -297,7 +297,7 @@
   <sup>[[link](#for-indentation)]</sup>
 
   ```elixir
-  for {alias, _mod} <- aliases_from_env(server),
+  for {alias, _module} <- aliases_from_env(server),
       [name] = Module.split(alias),
       starts_with?(name, hint),
       into: [] do
