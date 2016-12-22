@@ -348,10 +348,21 @@
   ```
 
 * <a name="true-in-cond"></a>
-  Use `true` as the always-match condition of the `cond` special form.
+  If you have an always-matching clause in the `cond` special form, use `true` as its condition.
   <sup>[[link](#true-in-cond)]</sup>
 
   ```elixir
+  # Bad
+  cond do
+    char in ?0..?9 ->
+      char - ?0
+    char in ?A..?Z ->
+      char - ?A + 10
+    :other ->
+      char - ?a + 10
+  end
+
+  # Good
   cond do
     char in ?0..?9 ->
       char - ?0
