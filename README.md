@@ -242,7 +242,7 @@
   |> String.slice(1, 3)
   ```
 
-  <a name="needless-pipeline"></a>
+* <a name="needless-pipeline"></a>
   Avoid needless pipelines like the plague.
   <sup>[[link](#needless-pipeline)]</sup>
 
