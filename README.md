@@ -542,7 +542,7 @@
   ```
 
 * <a name="current-module-reference"></a>
-  Use `__MODULE__` pseudo variable to reference current module.
+  Use `__MODULE__` pseudo-variable to reference current module.
   <sup>[[link](#current-module-reference)]</sup>
 
   ```elixir
