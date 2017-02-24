@@ -221,6 +221,24 @@
   String.strip(input) |> decode()
   ```
 
+* <a name="anonymous-fun-parens"></a>
+  Never wrap the arguments of anonymous functions in parentheses.
+  <sup>[[link](#anonymous-fun-parens)]</sup>
+
+  ```elixir
+  # Bad
+  Agent.get(pid, fn(state) -> state end)
+  Enum.reduce(numbers, fn(number, acc) ->
+    acc + number
+  end)
+
+  # Good
+  Agent.get(pid, fn state -> state end)
+  Enum.reduce(numbers, fn number, acc ->
+    acc + number
+  end)
+  ```
+
 * <a name="pipeline-operator"></a>
   Favor the pipeline operator `|>` to chain function calls together.
   <sup>[[link](#pipeline-operator)]</sup>
