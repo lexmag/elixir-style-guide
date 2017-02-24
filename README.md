@@ -222,7 +222,7 @@
   ```
 
 * <a name="anonymous-fun-parens"></a>
-  Never wrap the arguments of anonymous functions (`fn`) in parentheses.
+  Never wrap the arguments of anonymous functions in parentheses.
   <sup>[[link](#anonymous-fun-parens)]</sup>
 
   ```elixir
