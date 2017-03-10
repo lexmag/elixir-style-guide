@@ -212,7 +212,7 @@
   # Good
   pid = self()
   def new(), do: %MapSet{}
-  config = IEx.Config.new()
+  config = IEx.Config.new
   ```
 
   The same applies to __local__ one-arity function calls in pipelines.
