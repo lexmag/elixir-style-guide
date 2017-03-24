@@ -273,7 +273,7 @@
   ```
 
 * <a name="binary-operators-at-eols"></a>
-  When making a multi-line expression, keep binary operators (the only exception is the `|>` operator) at the ends of the lines.
+  When writing a multi-line expression, keep binary operators at the end of each line. The only exception is the `|>` operator (which goes at the beginning of the line).
   <sup>[[link](#binary-operators-at-eols)]</sup>
 
   ```elixir
