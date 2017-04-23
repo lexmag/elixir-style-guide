@@ -648,6 +648,19 @@
   Mix.raise "Could not find dependency"
   ```
 
+### Typespecs
+
+* <a name="parens-in-0-arity-types"></a>
+  Never use parens on 0-arity types.
+  <sup>[[link](#parens-in-0-arity-types)]</sup>
+
+  ```elixir
+  # Bad
+  @spec start_link(module(), term(), Keyword.t()) :: on_start()
+
+  # Good
+  @spec start_link(module, term, Keyword.t) :: on_start
+  ```
 
 ### ExUnit
 
