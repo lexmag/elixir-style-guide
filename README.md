@@ -215,10 +215,28 @@
   config = IEx.Config.new
   ```
 
-  The same applies to __local__ one-arity function calls in pipelines.
+  The same should be done for __remote__ zero-arity function calls:
 
   ```elixir
-  String.strip(input) |> decode()
+  # Bad
+  Mix.env
+
+  # Good
+  Mix.env()
+  ```
+
+  This rule also applies to one-arity function calls (both local and remote) in pipelines:
+
+  ```elixir
+  # Bad
+  input
+  |> String.strip
+  |> decode
+
+  # Good
+  input
+  |> String.strip()
+  |> decode()
   ```
 
 * <a name="anonymous-fun-parens"></a>
