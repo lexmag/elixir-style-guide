@@ -266,15 +266,15 @@
   String.downcase(String.strip(input))
 
   # Good
-  input |> String.strip |> String.downcase
-  String.strip(input) |> String.downcase
+  input |> String.strip() |> String.downcase()
+  String.strip(input) |> String.downcase()
   ```
 
   Use a single level of indentation for multi-line pipelines.
 
   ```elixir
   String.strip(input)
-  |> String.downcase
+  |> String.downcase()
   |> String.slice(1, 3)
   ```
 
@@ -284,7 +284,7 @@
 
   ```elixir
   # Bad
-  result = input |> String.strip
+  result = input |> String.strip()
 
   # Good
   result = String.strip(input)
