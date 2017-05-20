@@ -316,8 +316,7 @@
        {day, ""} <- Integer.parse(day) do
     new(year, month, day)
   else
-    _ ->
-      {:error, :invalid_format}
+    _ -> {:error, :invalid_format}
   end
   ```
 
