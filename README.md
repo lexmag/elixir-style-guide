@@ -82,7 +82,7 @@
   ```
 
 * <a name="multi-line-expr-assignment"></a>
-  When assigning the result of a multi-line expression, do not preserve alignment of its parts.
+  When assigning the result of a multi-line expression, begin the expression on a new line.
   <sup>[[link](#multi-line-expr-assignment)]</sup>
 
   ```elixir
@@ -101,11 +101,12 @@
     Enum.map(files, &Path.expand(&1, path))
     |> Enum.partition(&File.exists?/1)
 
-  prefix = case base do
-    :binary -> "0b"
-    :octal -> "0o"
-    :hex -> "0x"
-  end
+  prefix = 
+    case base do
+      :binary -> "0b"
+      :octal -> "0o"
+      :hex -> "0x"
+    end
   ```
 
 * <a name="underscores-in-numerics"></a>
