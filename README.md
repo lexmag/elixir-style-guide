@@ -258,6 +258,22 @@
   end)
   ```
 
+* <a name="space-before-anonymous-fun-arrow"></a>
+  Always use a space before `->` in 0-arity anonymous functions.
+  <sup>[[link](#space-before-anonymous-fun-arrow)]</sup>
+
+  ```elixir
+  # Bad
+  Task.async(fn->
+    ExUnit.Diff.script(left, right)
+  end)
+
+  # Good
+  Task.async(fn ->
+    ExUnit.Diff.script(left, right)
+  end)
+  ```
+
 * <a name="pipeline-operator"></a>
   Favor the pipeline operator `|>` to chain function calls together.
   <sup>[[link](#pipeline-operator)]</sup>
