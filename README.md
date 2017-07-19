@@ -178,7 +178,7 @@
 ### Syntax
 
 * <a name="fun-parens"></a>
-  Always use parentheses around `def` arguments, don't omit them even when a function has no arguments.
+  Always use parentheses around `def`/`defp`/`defmacro`/`defmacrop` arguments. Don't omit them even when a function has no arguments.
   <sup>[[link](#fun-parens)]</sup>
 
   ```elixir
@@ -202,18 +202,19 @@
   ```
 
 * <a name="zero-arity-parens"></a>
-  Parentheses are a must for __local__ zero-arity function calls and definitions.
+  Parentheses are a must for __local__ or __imported__ zero-arity function calls. Elixir will warn if you don't use parentheses in these cases.
   <sup>[[link](#zero-arity-parens)]</sup>
 
   ```elixir
   # Bad
   pid = self
-  def new, do: %MapSet{}
+  import System, only: [schedulers_online: 0]
+  schedulers_online
 
   # Good
   pid = self()
-  def new(), do: %MapSet{}
-  config = IEx.Config.new
+  import System, only: [schedulers_online: 0]
+  schedulers_online()
   ```
 
   The same should be done for __remote__ zero-arity function calls:
