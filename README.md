@@ -101,7 +101,7 @@
     Enum.map(files, &Path.expand(&1, path))
     |> Enum.partition(&File.exists?/1)
 
-  prefix = 
+  prefix =
     case base do
       :binary -> "0b"
       :octal -> "0o"
