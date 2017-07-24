@@ -98,7 +98,8 @@
 
   # Good
   {found, not_found} =
-    Enum.map(files, &Path.expand(&1, path))
+    files
+    |> Enum.map(&Path.expand(&1, path))
     |> Enum.partition(&File.exists?/1)
 
   prefix =
@@ -285,13 +286,13 @@
 
   # Good
   input |> String.strip() |> String.downcase()
-  String.strip(input) |> String.downcase()
   ```
 
-  Use a single level of indentation for multi-line pipelines.
+  For a multi-line pipeline, place each function call on a new line, and retain the level of indentation.
 
   ```elixir
-  String.strip(input)
+  input
+  |> String.strip()
   |> String.downcase()
   |> String.slice(1, 3)
   ```
