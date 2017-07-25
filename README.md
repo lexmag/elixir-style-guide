@@ -6,17 +6,34 @@
 
 ## Table of Contents
 
-* [Source Code Layout](#source-code-layout)
-* [Syntax](#syntax)
-* [Naming](#naming)
-* [Comments](#comments)
-* [Modules](#modules)
-* [Regular Expressions](#regular-expressions)
-* [Structs](#structs)
-* [Exceptions](#exceptions)
-* [ExUnit](#exunit)
+* [Formatting](#formatting)
+  * [Whitespace](#whitespace)
+  * [Indentation](#indentation)
+  * [Term representation](#term-representation)
+  * [Parentheses](#parentheses)
+  * [Layout](#layout)
+* [Linting](#linting)
+  * [Naming](#naming)
+  * [Comments](#comments)
+  * [Modules](#modules)
+  * [Regular Expressions](#regular-expressions)
+  * [Structs](#structs)
+  * [Exceptions](#exceptions)
+  * [ExUnit](#exunit)
 
-### Source Code Layout
+## Formatting
+
+### Whitespace
+
+>  Whitespace might be (mostly) irrelevant to the Elixir compiler, but its proper use is the key to writing easily readable code.
+
+* <a name="no-trailing-whitespaces"></a>
+  Avoid trailing whitespaces.
+  <sup>[[link](#no-trailing-whitespaces)]</sup>
+
+* <a name="newline-eof"></a>
+  End each file with a newline.
+  <sup>[[link](#newline-eof)]</sup>
 
 * <a name="spaces-indentation"></a>
   Use two __spaces__ per indentation level. No hard tabs.
@@ -34,21 +51,8 @@
   end
   ```
 
-* <a name="no-semicolon"></a>
-  Use one expression per line. Don't use semicolons (`;`) to separate statements and expressions.
-  <sup>[[link](#no-semicolon)]</sup>
-
-  ```elixir
-  # Bad
-  stacktrace = System.stacktrace(); fun.(stacktrace)
-
-  # Good
-  stacktrace = System.stacktrace()
-  fun.(stacktrace)
-  ```
-
 * <a name="spaces-in-code"></a>
-  Use a space before and after binary operators. Use a space after commas `,`, colons `:`, and semicolons `;`. Do not put spaces around matched pairs like brackets `[]`, braces `{}`, and so on. Whitespace might be (mostly) irrelevant to the Elixir compiler, but its proper use is the key to writing easily readable code.
+  Use a space before and after binary operators. Use a space after commas `,`, colons `:`, and semicolons `;`. Do not put spaces around matched pairs like brackets `[]`, braces `{}`, and so on.
   <sup>[[link](#spaces-in-code)]</sup>
 
   ```elixir
@@ -106,6 +110,36 @@
   <<102::unsigned-big-integer, rest::binary>>
   ```
 
+* <a name="leading-space-comment"></a>
+  Use one space between the leading `#` character of the comment and the text of the comment.
+  <sup>[[link](#leading-space-comment)]</sup>
+
+  ```elixir
+  # Bad
+  #Amount to take is greater than the number of elements
+
+  # Good
+  # Amount to take is greater than the number of elements
+  ```
+
+* <a name="space-before-anonymous-fun-arrow"></a>
+  Always use a space before `->` in 0-arity anonymous functions.
+  <sup>[[link](#space-before-anonymous-fun-arrow)]</sup>
+
+  ```elixir
+  # Bad
+  Task.async(fn->
+    ExUnit.Diff.script(left, right)
+  end)
+
+  # Good
+  Task.async(fn ->
+    ExUnit.Diff.script(left, right)
+  end)
+  ```
+
+### Indentation
+
 * <a name="guard-clauses"></a>
   Indent `when` guard clauses on the same level as the function/macro signature in the definition they're part of. Do this only if you cannot fit the `when` guard on the same line as the definition.
   <sup>[[link](#guard-clauses)]</sup>
@@ -122,75 +156,49 @@
   end
   ```
 
-* <a name="multi-line-expr-assignment"></a>
-  When assigning the result of a multi-line expression, begin the expression on a new line.
-  <sup>[[link](#multi-line-expr-assignment)]</sup>
+* <a name="with-indentation"></a>
+  Use the indentation shown below for the `with` special form:
+  <sup>[[link](#with-indentation)]</sup>
 
   ```elixir
-  # Bad
-  {found, not_found} = Enum.map(files, &Path.expand(&1, path))
-                       |> Enum.partition(&File.exists?/1)
-
-  prefix = case base do
-             :binary -> "0b"
-             :octal -> "0o"
-             :hex -> "0x"
-           end
-
-  # Good
-  {found, not_found} =
-    files
-    |> Enum.map(&Path.expand(&1, path))
-    |> Enum.partition(&File.exists?/1)
-
-  prefix =
-    case base do
-      :binary -> "0b"
-      :octal -> "0o"
-      :hex -> "0x"
-    end
+  with {year, ""} <- Integer.parse(year),
+       {month, ""} <- Integer.parse(month),
+       {day, ""} <- Integer.parse(day) do
+    new(year, month, day)
+  else
+    _ ->
+      {:error, :invalid_format}
+  end
   ```
 
-* <a name="underscores-in-numerics"></a>
-  Add underscores to large numeric literals to improve their readability.
-  <sup>[[link](#underscores-in-numerics)]</sup>
+  Always use the indentation above if there's an `else` option. If there isn't, the following indentation works as well:
 
   ```elixir
-  num = 1_000_000
+  with {:ok, date} <- Calendar.ISO.date(year, month, day),
+       {:ok, time} <- Time.new(hour, minute, second, microsecond),
+       do: new(date, time)
   ```
 
-* <a name="quotes-around-atoms"></a>
-  When using atom literals that need to be quoted because they contain characters that are invalid in atoms (such as `:"foo-bar"`), use double quotes around the atom name:
-  <sup>[[link](#quotes-around-atoms)]</sup>
+* <a name="for-indentation"></a>
+  Use the indentation shown below for the `for` special form:
+  <sup>[[link](#for-indentation)]</sup>
 
   ```elixir
-  # Bad
-  :'foo-bar'
-  :'atom number #{index}'
-
-  # Good
-  :"foo-bar"
-  :"atom number #{index}"
+  for {alias, _module} <- aliases_from_env(server),
+      [name] = Module.split(alias),
+      starts_with?(name, hint),
+      into: [] do
+    %{kind: :module, type: :alias, name: name}
+  end
   ```
 
-* <a name="no-trailing-whitespaces"></a>
-  Avoid trailing whitespaces.
-  <sup>[[link](#no-trailing-whitespaces)]</sup>
-
-* <a name="newline-eof"></a>
-  End each file with a newline.
-  <sup>[[link](#newline-eof)]</sup>
-
-* <a name="trailing-comma"></a>
-  When dealing with lists, maps, structs, or tuples whose elements span over multiple lines and are on separate lines with regard to the enclosing brackets, it's advised to use a trailing comma even for the last element:
-  <sup>[[link](#trailing-comma)]</sup>
+  If the body of the `do` block is short, the following indentation works as well:
 
   ```elixir
-  [
-    :foo,
-    :bar,
-    :baz,
-  ]
+  for partition <- 0..(partitions - 1),
+      pair <- safe_lookup(registry, partition, key),
+      into: [],
+      do: pair
   ```
 
 * <a name="expression-group-alignment"></a>
@@ -217,31 +225,66 @@
 
   The same non-alignment rule applies to `<-` and `->` clauses as well.
 
-### Syntax
+* <a name="pipeline-indentation"></a>
+  Use a single level of indentation for multi-line pipelines.
+  <sup>[[link](#pipeline-indentation)]</sup>
 
-* <a name="fun-parens"></a>
-  Always use parentheses around `def`/`defp`/`defmacro`/`defmacrop` arguments. Don't omit them even when a function has no arguments.
-  <sup>[[link](#fun-parens)]</sup>
+  ```elixir
+  input
+  |> String.strip()
+  |> String.downcase()
+  |> String.slice(1, 3)
+  ```
+
+### Term representation
+
+* <a name="underscores-in-numerics"></a>
+  Add underscores to large numeric literals to improve their readability.
+  <sup>[[link](#underscores-in-numerics)]</sup>
+
+  ```elixir
+  num = 1_000_000
+  ```
+
+* <a name="hex-literals"></a>
+  Use uppercase letters when using hex literals.
+  <sup>[[link](#hex-literals)]</sup>
 
   ```elixir
   # Bad
-  def main arg1, arg2 do
-    #...
-  end
-
-  def main do
-    #...
-  end
+  <<0xef, 0xbb, 0xbf>>
 
   # Good
-  def main(arg1, arg2) do
-    #...
-  end
-
-  def main() do
-    #...
-  end
+  <<0xEF, 0xBB, 0xBF>>
   ```
+
+* <a name="quotes-around-atoms"></a>
+  When using atom literals that need to be quoted because they contain characters that are invalid in atoms (such as `:"foo-bar"`), use double quotes around the atom name:
+  <sup>[[link](#quotes-around-atoms)]</sup>
+
+  ```elixir
+  # Bad
+  :'foo-bar'
+  :'atom number #{index}'
+
+  # Good
+  :"foo-bar"
+  :"atom number #{index}"
+  ```
+
+* <a name="trailing-comma"></a>
+  When dealing with lists, maps, structs, or tuples whose elements span over multiple lines and are on separate lines with regard to the enclosing brackets, it's advised to use a trailing comma even for the last element:
+  <sup>[[link](#trailing-comma)]</sup>
+
+  ```elixir
+  [
+    :foo,
+    :bar,
+    :baz,
+  ]
+  ```
+
+### Parentheses
 
 * <a name="zero-arity-parens"></a>
   Parentheses are a must for __local__ or __imported__ zero-arity function calls.
@@ -300,21 +343,104 @@
   end)
   ```
 
-* <a name="space-before-anonymous-fun-arrow"></a>
-  Always use a space before `->` in 0-arity anonymous functions.
-  <sup>[[link](#space-before-anonymous-fun-arrow)]</sup>
+* <a name="fun-parens"></a>
+  Always use parentheses around arguments to definitions (such as `def`, `defp`, `defmacro`, `defmacrop`, `defdelegate`). Don't omit them even when a function has no arguments.
+  <sup>[[link](#fun-parens)]</sup>
 
   ```elixir
   # Bad
-  Task.async(fn->
-    ExUnit.Diff.script(left, right)
-  end)
+  def main arg1, arg2 do
+    # ...
+  end
+
+  defmacro env do
+    # ...
+  end
 
   # Good
-  Task.async(fn ->
-    ExUnit.Diff.script(left, right)
-  end)
+  def main(arg1, arg2) do
+    # ...
+  end
+
+  defmacro env() do
+    # ...
+  end
   ```
+
+* <a name="parens-in-zero-arity-types"></a>
+  Never use parens on zero-arity types.
+  <sup>[[link](#parens-in-zero-arity-types)]</sup>
+
+  ```elixir
+  # Bad
+  @spec start_link(module(), term(), Keyword.t()) :: on_start()
+
+  # Good
+  @spec start_link(module, term, Keyword.t) :: on_start
+  ```
+
+### Layout
+
+* <a name="no-semicolon"></a>
+  Use one expression per line. Don't use semicolons (`;`) to separate statements and expressions.
+  <sup>[[link](#no-semicolon)]</sup>
+
+  ```elixir
+  # Bad
+  stacktrace = System.stacktrace(); fun.(stacktrace)
+
+  # Good
+  stacktrace = System.stacktrace()
+  fun.(stacktrace)
+  ```
+
+* <a name="multi-line-expr-assignment"></a>
+  When assigning the result of a multi-line expression, begin the expression on a new line.
+  <sup>[[link](#multi-line-expr-assignment)]</sup>
+
+  ```elixir
+  # Bad
+  {found, not_found} = files
+                       |> Enum.map(&Path.expand(&1, path))
+                       |> Enum.partition(&File.exists?/1)
+
+  prefix = case base do
+             :binary -> "0b"
+             :octal -> "0o"
+             :hex -> "0x"
+           end
+
+  # Good
+  {found, not_found} =
+    files
+    |> Enum.map(&Path.expand(&1, path))
+    |> Enum.partition(&File.exists?/1)
+
+  prefix =
+    case base do
+      :binary -> "0b"
+      :octal -> "0o"
+      :hex -> "0x"
+    end
+  ```
+
+* <a name="binary-operators-at-eols"></a>
+  When writing a multi-line expression, keep binary operators at the end of each line. The only exception is the `|>` operator (which goes at the beginning of the line).
+  <sup>[[link](#binary-operators-at-eols)]</sup>
+
+  ```elixir
+  # Bad
+  "No matching message.\n"
+    <> "Process mailbox:\n"
+    <> mailbox
+
+  # Good
+  "No matching message.\n" <>
+    "Process mailbox:\n" <>
+    mailbox
+  ```
+
+## Linting
 
 * <a name="pipeline-operator"></a>
   Favor the pipeline operator `|>` to chain function calls together.
@@ -335,7 +461,6 @@
   |> String.strip()
   |> String.downcase()
   |> String.slice(1, 3)
-  ```
 
 * <a name="needless-pipeline"></a>
   Avoid needless pipelines like the plague.
@@ -347,67 +472,6 @@
 
   # Good
   result = String.strip(input)
-  ```
-
-* <a name="binary-operators-at-eols"></a>
-  When writing a multi-line expression, keep binary operators at the end of each line. The only exception is the `|>` operator (which goes at the beginning of the line).
-  <sup>[[link](#binary-operators-at-eols)]</sup>
-
-  ```elixir
-  # Bad
-  "No matching message.\n"
-  <> "Process mailbox:\n"
-  <> mailbox
-
-  # Good
-  "No matching message.\n" <>
-  "Process mailbox:\n" <>
-  mailbox
-  ```
-
-* <a name="with-indentation"></a>
-  Use the indentation shown below for the `with` special form:
-  <sup>[[link](#with-indentation)]</sup>
-
-  ```elixir
-  with {year, ""} <- Integer.parse(year),
-       {month, ""} <- Integer.parse(month),
-       {day, ""} <- Integer.parse(day) do
-    new(year, month, day)
-  else
-    _ ->
-      {:error, :invalid_format}
-  end
-  ```
-
-  Always use the indentation above if there's an `else` option. If there isn't, the following indentation works as well:
-
-  ```elixir
-  with {:ok, date} <- Calendar.ISO.date(year, month, day),
-       {:ok, time} <- Time.new(hour, minute, second, microsecond),
-       do: new(date, time)
-  ```
-
-* <a name="for-indentation"></a>
-  Use the indentation shown below for the `for` special form:
-  <sup>[[link](#for-indentation)]</sup>
-
-  ```elixir
-  for {alias, _module} <- aliases_from_env(server),
-      [name] = Module.split(alias),
-      starts_with?(name, hint),
-      into: [] do
-    %{kind: :module, type: :alias, name: name}
-  end
-  ```
-
-  If the body of the `do` block is short, the following indentation works as well:
-
-  ```elixir
-  for partition <- 0..(partitions - 1),
-      pair <- safe_lookup(registry, partition, key),
-      into: [],
-      do: pair
   ```
 
 * <a name="no-else-with-unless"></a>
@@ -431,7 +495,7 @@
   ```
 
 * <a name="no-nil-else"></a>
-  Omit `else` option in `if` and `unless` clauses if it returns `nil`.
+  Omit the `else` option in `if` and `unless` constructs if `else` returns `nil`.
   <sup>[[link](#no-nil-else)]</sup>
 
   ```elixir
@@ -469,7 +533,7 @@
   ```
 
 * <a name="boolean-operators"></a>
-  Never use `||`, `&&` and `!` for strictly boolean checks. Use these operators only if any of the arguments are non-boolean.
+  Never use `||`, `&&`, and `!` for strictly boolean checks. Use these operators only if any of the arguments are non-boolean.
   <sup>[[link](#boolean-operators)]</sup>
 
   ```elixir
@@ -498,22 +562,10 @@
   <<first::utf8>> <> rest = input
   ```
 
-* <a name="hex-literals"></a>
-  Use uppercase in definition of hex literals.
-  <sup>[[link](#hex-literals)]</sup>
-
-  ```elixir
-  # Bad
-  <<0xef, 0xbb, 0xbf>>
-
-  # Good
-  <<0xEF, 0xBB, 0xBF>>
-  ```
-
 ### Naming
 
 * <a name="snake-case-atoms-funs-vars-attrs"></a>
-  Use `snake_case` for atoms, functions, variables and module attributes.
+  Use `snake_case` for functions, variables, module attributes, and atoms.
   <sup>[[link](#snake-case-atoms-funs-vars-attrs)]</sup>
 
   ```elixir
@@ -527,7 +579,7 @@
   @_VERSION "0.0.1"
 
   def readFile(path) do
-    #...
+    # ...
   end
 
   # Good
@@ -540,41 +592,55 @@
   @version "0.0.1"
 
   def read_file(path) do
-    #...
+    # ...
   end
   ```
 
 * <a name="camelcase-modules"></a>
-  Use `CamelCase` for module names.
+  Use `CamelCase` for module names. Keep uppercase acronyms as uppercase.
   <sup>[[link](#camelcase-modules)]</sup>
 
   ```elixir
   # Bad
   defmodule :appStack do
-    #...
+    # ...
   end
 
   defmodule App_Stack do
-    #...
+    # ...
   end
 
   defmodule Appstack do
-    #...
+    # ...
+  end
+
+  defmodule Html do
+    # ...
   end
 
   # Good
   defmodule AppStack do
-    #...
+    # ...
+  end
+
+  defmodule HTML do
+    # ...
   end
   ```
 
 * <a name="predicate-funs-name"></a>
-  The names of predicate functions (a function that return a boolean value) should have a trailing question mark `?` rather than a leading `has_` or similar.
+  The names of predicate functions (functions that return a boolean value) should have a trailing question mark `?` rather than a leading `has_` or similar.
   <sup>[[link](#predicate-funs-name)]</sup>
 
   ```elixir
+  # Bad
+  def is_leap(year) do
+    # ...
+  end
+
+  # Good
   def leap?(year) do
-    #...
+    # ...
   end
   ```
 
@@ -582,12 +648,12 @@
 
   ```elixir
   defmacro is_date(month, day) do
-    #...
+    # ...
   end
   ```
 
 * <a name="snake-case-dirs-files"></a>
-  Use `snake_case` for naming directories and files, e.g. `lib/my_app/task_server.ex`.
+  Use `snake_case` for naming directories and files, for example `lib/my_app/task_server.ex`.
   <sup>[[link](#snake-case-dirs-files)]</sup>
 
 * <a name="one-letter-var"></a>
@@ -604,10 +670,6 @@
   Write self-documenting code and ignore the rest of this section. Seriously!
   <sup>[[link](#no-need-for-comments)]</sup>
 
-* <a name="leading-space-comment"></a>
-  Use one space between the leading `#` character of the comment and the text of the comment.
-  <sup>[[link](#leading-space-comment)]</sup>
-
 * <a name="no-superfluous-comments"></a>
   Avoid superfluous comments.
   <sup>[[link](#no-superfluous-comments)]</sup>
@@ -620,8 +682,7 @@
 ### Modules
 
 * <a name="module-layout"></a>
-  Use a consistent structure when calling `use`/`import`/`alias`/`require`: call
-  them in this order and group multiple calls to each of them.
+  Use a consistent structure when calling `use`/`import`/`alias`/`require`: call them in this order and group multiple calls to each of them.
   <sup>[[link](#module-layout)]</sup>
 
   ```elixir
@@ -637,7 +698,7 @@
   ```
 
 * <a name="current-module-reference"></a>
-  Use `__MODULE__` pseudo-variable to reference current module.
+  Use the `__MODULE__` pseudo-variable to reference the current module.
   <sup>[[link](#current-module-reference)]</sup>
 
   ```elixir
@@ -653,7 +714,7 @@
 ### Regular Expressions
 
 * <a name="pattern-matching-over-regexp"></a>
-  Regular expressions are the last resort. Pattern matching and `String` module are things to start with.
+  Regular expressions are the last resort. Pattern matching and the `String` module are things to start with.
   <sup>[[link](#pattern-matching-over-regexp)]</sup>
 
   ```elixir
@@ -723,20 +784,6 @@
 
   ```elixir
   Mix.raise "Could not find dependency"
-  ```
-
-### Typespecs
-
-* <a name="parens-in-zero-arity-types"></a>
-  Never use parens on zero-arity types.
-  <sup>[[link](#parens-in-zero-arity-types)]</sup>
-
-  ```elixir
-  # Bad
-  @spec start_link(module(), term(), Keyword.t()) :: on_start()
-
-  # Good
-  @spec start_link(module, term, Keyword.t) :: on_start
   ```
 
 ### ExUnit
