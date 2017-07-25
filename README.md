@@ -22,15 +22,43 @@
   Use two __spaces__ per indentation level. No hard tabs.
   <sup>[[link](#spaces-indentation)]</sup>
 
+  ```elixir
+  # Bad
+  def register_attribute(name, opts) do
+      register_attribute(__MODULE__, name, opts)
+  end
+
+  # Good
+  def register_attribute(name, opts) do
+    register_attribute(__MODULE__, name, opts)
+  end
+  ```
+
 * <a name="no-semicolon"></a>
-  Use one expression per line, as a corollary - don't use semicolon `;` to separate statements and expressions.
+  Use one expression per line. Don't use semicolons (`;`) to separate statements and expressions.
   <sup>[[link](#no-semicolon)]</sup>
 
+  ```elixir
+  # Bad
+  stacktrace = System.stacktrace(); fun.(stacktrace)
+
+  # Good
+  stacktrace = System.stacktrace()
+  fun.(stacktrace)
+  ```
+
 * <a name="spaces-in-code"></a>
-  Use spaces around binary operators, after commas `,`, colons `:` and semicolons `;`. Do not put spaces around matched pairs like brackets `[]`, braces `{}`, etc. Whitespace might be (mostly) irrelevant to the Elixir compiler, but its proper use is the key to writing easily readable code.
+  Use a space before and after binary operators. Use a space after commas `,`, colons `:`, and semicolons `;`. Do not put spaces around matched pairs like brackets `[]`, braces `{}`, and so on. Whitespace might be (mostly) irrelevant to the Elixir compiler, but its proper use is the key to writing easily readable code.
   <sup>[[link](#spaces-in-code)]</sup>
 
   ```elixir
+  # Bad
+  sum = 1+1
+  [first|rest] = 'three'
+  {a1,a2} = {2 ,3}
+  Enum.join( [ "one" , << "two" >>, sum ])
+
+  # Good
   sum = 1 + 2
   [first | rest] = 'three'
   {a1, a2} = {2, 3}
@@ -38,10 +66,15 @@
   ```
 
 * <a name="no-spaces-in-code"></a>
-  No spaces after unary operators and inside range literals, the only exception is the `not` operator.
+  Use no spaces after unary operators and inside range literals. The only exception is the `not` operator: use a space after it.
   <sup>[[link](#no-spaces-in-code)]</sup>
 
   ```elixir
+  # Bad
+  angle = - 45
+  ^ result = Float.parse("42.01")
+
+  # Good
   angle = -45
   ^result = Float.parse("42.01")
   2 in 1..5
@@ -51,6 +84,14 @@
 * <a name="default-arguments"></a>
   Use spaces around default arguments `\\` definition.
   <sup>[[link](#default-arguments)]</sup>
+
+  ```elixir
+  # Bad
+  def start_link(fun, options\\[])
+
+  # Good
+  def start_link(fun, options \\ [])
+  ```
 
 * <a name="bitstring-segment-options"></a>
   Do not put spaces around segment options definition in bitstrings.
@@ -203,19 +244,18 @@
   ```
 
 * <a name="zero-arity-parens"></a>
-  Parentheses are a must for __local__ or __imported__ zero-arity function calls. Elixir will warn if you don't use parentheses in these cases.
+  Parentheses are a must for __local__ or __imported__ zero-arity function calls.
   <sup>[[link](#zero-arity-parens)]</sup>
 
   ```elixir
   # Bad
   pid = self
-  import System, only: [schedulers_online: 0]
-  schedulers_online
+  import System, only: [schedu]
 
   # Good
   pid = self()
-  import System, only: [schedulers_online: 0]
-  schedulers_online()
+  def new(), do: %MapSet{}
+  config = IEx.Config.new
   ```
 
   The same should be done for __remote__ zero-arity function calls:
