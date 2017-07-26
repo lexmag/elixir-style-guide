@@ -4,6 +4,12 @@
 >
 > — <cite>What a Programmer Does, 1967</cite>
 
+#### Why follow this guide?
+
+> The only tool available right now is this guide written using the blood of the maintainers as ink
+>
+> — <cite>[José Valim](https://github.com/elixir-lang/elixir/pull/6022#discussion_r112669015), creator of Elixir</cite>
+
 ## Table of Contents
 
 * [Formatting](#formatting)
