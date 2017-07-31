@@ -146,15 +146,36 @@
 
 ### Indentation
 
-* <a name="guard-clauses"></a>
-  Indent `when` guard clauses on the same level as the function/macro signature in the definition they're part of. Do this only if you cannot fit the `when` guard on the same line as the definition.
-  <sup>[[link](#guard-clauses)]</sup>
+* <a name="binary-ops-indentation"></a>
+  <a name="guard-clauses"></a>
+  Indent the right-hand side of a binary operator one level more than the left-hand side if left-hand side and right-hand side are on different lines. The only exceptions are `when` in guards and `|>`, which go on the beginning of the line and should be indented at the same level as their left-hand side.
+  <sup>[[link](#binary-ops-indentation)]</sup>
 
   ```elixir
-  def format_error({exception, stacktrace})
-      when is_list(stacktrace) and stacktrace != [] do
+  # Bad
+
+  "No matching message.\n" <>
+  "Process mailbox:\n" <>
+  mailbox
+
+  input
+    |> String.strip()
+    |> String.downcase()
+
+  defmacro dngettext(domain, msgid, msgid_plural, count)
+    when is_binary(msgid) and is_binary(msgid_plural) do
     # ...
   end
+
+  # Good
+
+  "No matching message.\n" <>
+    "Process mailbox:\n" <>
+    mailbox
+
+  input
+  |> String.strip()
+  |> String.downcase()
 
   defmacro dngettext(domain, msgid, msgid_plural, count)
            when is_binary(msgid) and is_binary(msgid_plural) do
