@@ -245,11 +245,17 @@
 ### Term representation
 
 * <a name="underscores-in-numerics"></a>
-  Add underscores to large numeric literals to improve their readability.
+  Add underscores to base-10 numeric literals that have six or more digits.
   <sup>[[link](#underscores-in-numerics)]</sup>
 
   ```elixir
+  # Bad
+  num = 1000000
+  num = 1_500
+
+  # Good
   num = 1_000_000
+  num = 1500
   ```
 
 * <a name="hex-literals"></a>
