@@ -245,7 +245,7 @@
 ### Term representation
 
 * <a name="underscores-in-numerics"></a>
-  Add underscores to base-10 numeric literals that have six or more digits.
+  Add underscores to decimal literals that have six or more digits.
   <sup>[[link](#underscores-in-numerics)]</sup>
 
   ```elixir
