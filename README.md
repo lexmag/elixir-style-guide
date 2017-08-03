@@ -148,7 +148,7 @@
 
 * <a name="binary-ops-indentation"></a>
   <a name="guard-clauses"></a>
-  Indent the right-hand side of a binary operator one level more than the left-hand side if left-hand side and right-hand side are on different lines. The only exceptions are `when` in guards and `|>`, which go on the beginning of the line and should be indented at the same level as their left-hand side.
+  Indent the right-hand side of a binary operator one level more than the left-hand side if left-hand side and right-hand side are on different lines. The only exceptions are `when` in guards and `|>`, which go on the beginning of the line and should be indented at the same level as their left-hand side. Do this also for binary operators when assigning.
   <sup>[[link](#binary-ops-indentation)]</sup>
 
   ```elixir
@@ -157,6 +157,11 @@
   "No matching message.\n" <>
   "Process mailbox:\n" <>
   mailbox
+
+  message =
+    "No matching message.\n" <>
+      "Process mailbox:\n" <>
+      mailbox
 
   input
     |> String.strip()
@@ -170,6 +175,11 @@
   # Good
 
   "No matching message.\n" <>
+    "Process mailbox:\n" <>
+    mailbox
+
+  message =
+    "No matching message.\n" <>
     "Process mailbox:\n" <>
     mailbox
 
@@ -457,19 +467,23 @@
 
   ```elixir
   # Bad
+
   "No matching message.\n"
     <> "Process mailbox:\n"
     <> mailbox
+
+  input |>
+    String.strip() |>
+    decode()
 
   # Good
   "No matching message.\n" <>
     "Process mailbox:\n" <>
     mailbox
 
-  message =
-    "No matching message.\n" <>
-    "Process mailbox:\n" <>
-    mailbox
+  input
+  |> String.strip()
+  |> decode()
   ```
 
 ## Linting
