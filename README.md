@@ -173,8 +173,8 @@
     # ...
   end
 
-  defp parenless_capture?({atom, _meta, _args})
-       when is_atom(atom) and
+  defp parenless_capture?({op, _meta, _args})
+       when is_atom(op) and
        atom not in @unary_ops and
        atom not in @binary_ops do
     true
@@ -201,8 +201,8 @@
     # ...
   end
 
-  defp parenless_capture?({atom, _meta, _args})
-       when is_atom(atom) and
+  defp parenless_capture?({op, _meta, _args})
+       when is_atom(op) and
             atom not in @unary_ops and
             atom not in @binary_ops do
     true
