@@ -167,9 +167,19 @@
     |> String.strip()
     |> String.downcase()
 
-  defmacro dngettext(domain, msgid, msgid_plural, count)
-    when is_binary(msgid) and is_binary(msgid_plural) do
-    # ...
+  defp valid_identifier_char?(char)
+    when char in ?a..?z
+      when char in ?A..?Z
+      when char in ?0..?9
+      when char == ?_ do
+    true
+  end
+
+  defp parenless_capture?({op, _meta, _args})
+       when is_atom(op) and
+       atom not in @unary_ops and
+       atom not in @binary_ops do
+    true
   end
 
   # Good
@@ -187,9 +197,19 @@
   |> String.strip()
   |> String.downcase()
 
-  defmacro dngettext(domain, msgid, msgid_plural, count)
-           when is_binary(msgid) and is_binary(msgid_plural) do
-    # ...
+  defp valid_identifier_char?(char)
+       when char in ?a..?z
+       when char in ?A..?Z
+       when char in ?0..?9
+       when char == ?_ do
+    true
+  end
+
+  defp parenless_capture?({op, _meta, _args})
+       when is_atom(op) and
+            atom not in @unary_ops and
+            atom not in @binary_ops do
+    true
   end
   ```
 
