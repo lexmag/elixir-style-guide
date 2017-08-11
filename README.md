@@ -168,7 +168,8 @@
     |> String.downcase()
 
   defmacro dngettext(domain, msgid, msgid_plural, count)
-    when is_binary(msgid) and is_binary(msgid_plural) do
+    when is_binary(msgid) and is_binary(msgid_plural)
+      when is_tuple(msgid) and is_tuple(msgid_plural) do
     # ...
   end
 
@@ -195,7 +196,8 @@
   |> String.downcase()
 
   defmacro dngettext(domain, msgid, msgid_plural, count)
-           when is_binary(msgid) and is_binary(msgid_plural) do
+           when is_binary(msgid) and is_binary(msgid_plural)
+           when is_tuple(msgid) and is_tuple(msgid_plural) do
     # ...
   end
 
