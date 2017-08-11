@@ -172,6 +172,13 @@
     # ...
   end
 
+  defp parenless_capture?({atom, _meta, _args})
+       when is_atom(atom) and
+       atom not in @unary_ops and
+       atom not in @binary_ops do
+    true
+  end
+
   # Good
 
   "No matching message.\n" <>
@@ -190,6 +197,13 @@
   defmacro dngettext(domain, msgid, msgid_plural, count)
            when is_binary(msgid) and is_binary(msgid_plural) do
     # ...
+  end
+
+  defp parenless_capture?({atom, _meta, _args})
+       when is_atom(atom) and
+            atom not in @unary_ops and
+            atom not in @binary_ops do
+    true
   end
   ```
 
