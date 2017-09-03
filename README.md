@@ -58,6 +58,31 @@ The following section are automatically applied by the code formatter in Elixir 
   result = String.strip(input)
   ```
 
+* <a name="anonymous-pipeline"></a>
+  Don't use anonymous functions in pipelines.
+  <sup>[[link](#anonymous-pipeline)]</sup>
+
+  ```elixir
+  # Bad
+  sentence
+  |> String.split(~r/\s/)
+  |> (fn(words) -> [@sentence_begin | words] end).()
+  |> Enum.join(" ")
+
+  # Good
+  Enum.join([@sentence_begin | String.split(sentence, ~r/\s/)], " ")
+  ```
+
+  Consider defining private helper function when appropriate
+
+  ```elixir
+  # Good
+  sentence
+  |> String.split(~r/\s/)
+  |> prepend(@sentence_begin)
+  |> Enum.join(" ")
+  ```
+
 * <a name="no-else-with-unless"></a>
   Never use `unless` with `else`. Rewrite these with the positive case first.
   <sup>[[link](#no-else-with-unless)]</sup>
