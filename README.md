@@ -356,12 +356,13 @@
   ```elixir
   # Bad
   pid = self
-  import System, only: [schedu]
+  import System, only: [schedulers_online: 0]
+  schedulers_online
 
   # Good
   pid = self()
-  def new(), do: %MapSet{}
-  config = IEx.Config.new
+  import System, only: [schedulers_online: 0]
+  schedulers_online()
   ```
 
   The same should be done for __remote__ zero-arity function calls:
