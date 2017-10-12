@@ -160,8 +160,8 @@
 
   message =
     "No matching message.\n" <>
-      "Process mailbox:\n" <>
-      mailbox
+    "Process mailbox:\n" <>
+    mailbox
 
   input
     |> String.strip()
@@ -190,8 +190,8 @@
 
   message =
     "No matching message.\n" <>
-    "Process mailbox:\n" <>
-    mailbox
+      "Process mailbox:\n" <>
+      mailbox
 
   input
   |> String.strip()
@@ -207,8 +207,8 @@
 
   defp parenless_capture?({op, _meta, _args})
        when is_atom(op) and
-            atom not in @unary_ops and
-            atom not in @binary_ops do
+              atom not in @unary_ops and
+              atom not in @binary_ops do
     true
   end
   ```
@@ -336,14 +336,14 @@
   ```
 
 * <a name="trailing-comma"></a>
-  When dealing with lists, maps, structs, or tuples whose elements span over multiple lines and are on separate lines with regard to the enclosing brackets, it's advised to use a trailing comma even for the last element:
+  When dealing with lists, maps, structs, or tuples whose elements span over multiple lines and are on separate lines with regard to the enclosing brackets, it's advised to *not* use a trailing comma on the last element:
   <sup>[[link](#trailing-comma)]</sup>
 
   ```elixir
   [
     :foo,
     :bar,
-    :baz,
+    :baz
   ]
   ```
 
@@ -431,15 +431,15 @@
   ```
 
 * <a name="parens-in-zero-arity-types"></a>
-  Never use parens on zero-arity types.
+  Always use parens on zero-arity types.
   <sup>[[link](#parens-in-zero-arity-types)]</sup>
 
   ```elixir
   # Bad
-  @spec start_link(module(), term(), Keyword.t()) :: on_start()
+  @spec start_link(module, term, Keyword.t) :: on_start
 
   # Good
-  @spec start_link(module, term, Keyword.t) :: on_start
+  @spec start_link(module(), term(), Keyword.t()) :: on_start()
   ```
 
 ### Layout
@@ -587,8 +587,10 @@
   cond do
     char in ?0..?9 ->
       char - ?0
+
     char in ?A..?Z ->
       char - ?A + 10
+
     :other ->
       char - ?a + 10
   end
@@ -597,8 +599,10 @@
   cond do
     char in ?0..?9 ->
       char - ?0
+
     char in ?A..?Z ->
       char - ?A + 10
+
     true ->
       char - ?a + 10
   end
@@ -855,7 +859,7 @@
   There is one exception to the rule - always capitalize Mix error messages.
 
   ```elixir
-  Mix.raise "Could not find dependency"
+  Mix.raise("Could not find dependency")
   ```
 
 ### ExUnit
