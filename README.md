@@ -8,7 +8,7 @@
 
 > Use the new code formatter and you can through at least half of this out of the window.
 >
-> — <cite>[José Valim](https://github.com/elixir-lang/elixir/pull/6022#discussion_r112669015), creator of Elixir</cite>
+> — <cite>[José Valim](https://github.com/lexmag/elixir-style-guide/pull/46), creator of Elixir</cite>
 
 ## Table of Contents
 
