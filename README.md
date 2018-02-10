@@ -6,7 +6,7 @@
 
 #### Why not follow this guide?
 
-> Use the new code formatter and you can through at least half of this out of the window.
+> Use the new code formatter and you can throw at least half of this out of the window.
 >
 > — <cite>[José Valim](https://github.com/lexmag/elixir-style-guide/pull/46), creator of Elixir</cite>
 
