@@ -254,9 +254,11 @@ The following section are automatically applied by the code formatter in Elixir 
 >
 > — <cite>Russ Olsen</cite>
 
-* <a name="no-need-for-comments"></a>
-  Write self-documenting code and ignore the rest of this section. Seriously!
-  <sup>[[link](#no-need-for-comments)]</sup>
+* <a name="critical-comments"></a>
+  Use code comments only to communicate important details to another person reading the code.
+  For example, a high-level description of the algorithm being implemented or why certain
+  critical decisions, such as optimization or business rules, were made.
+  <sup>[[link](#critical-comments)]</sup>
 
 * <a name="no-superfluous-comments"></a>
   Avoid superfluous comments.
@@ -718,6 +720,14 @@ They are provided here for documentation purposes and for those maintaining olde
   ```
 
 ### Parentheses
+
+* <a name="snake-case-dirs-files"></a>
+  Use `snake_case` for naming directories and files, for example `lib/my_app/task_server.ex`.
+  <sup>[[link](#snake-case-dirs-files)]</sup>
+
+* <a name="one-letter-var"></a>
+  Avoid using one-letter variable names.
+  <sup>[[link](#one-letter-var)]</sup>
 
 * <a name="zero-arity-parens"></a>
   Parentheses are a must for __local__ or __imported__ zero-arity function calls.
