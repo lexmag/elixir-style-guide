@@ -743,9 +743,11 @@
 >
 > — <cite>Russ Olsen</cite>
 
-* <a name="no-need-for-comments"></a>
-  Write self-documenting code and ignore the rest of this section. Seriously!
-  <sup>[[link](#no-need-for-comments)]</sup>
+* <a name="critical-comments"></a>
+  Use code comments only to communicate important details to another person reading the code.
+  For example, a high-level description of the algorithm being implemented or why certain
+  critical decisions, such as optimization or business rules, were made.
+  <sup>[[link](#critical-comments)]</sup>
 
 * <a name="no-superfluous-comments"></a>
   Avoid superfluous comments.
