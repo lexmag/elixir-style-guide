@@ -66,11 +66,12 @@ The following section are automatically applied by the code formatter in Elixir 
   # Bad
   sentence
   |> String.split(~r/\s/)
-  |> (fn(words) -> [@sentence_begin | words] end).()
+  |> (fn words -> [@sentence_start | words] end).()
   |> Enum.join(" ")
 
   # Good
-  Enum.join([@sentence_begin | String.split(sentence, ~r/\s/)], " ")
+  split_sentence = String.split(sentence, ~r/\s/)
+  Enum.join([@sentence_start | split_sentence], " ")
   ```
 
   Consider defining private helper function when appropriate
@@ -79,7 +80,7 @@ The following section are automatically applied by the code formatter in Elixir 
   # Good
   sentence
   |> String.split(~r/\s/)
-  |> prepend(@sentence_begin)
+  |> prepend(@sentence_start)
   |> Enum.join(" ")
   ```
 
