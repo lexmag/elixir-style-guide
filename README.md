@@ -74,7 +74,7 @@ The following section are automatically applied by the code formatter in Elixir 
   Enum.join([@sentence_start | split_sentence], " ")
   ```
 
-  Consider defining private helper function when appropriate
+  Consider defining private helper function when appropriate:
 
   ```elixir
   # Good
