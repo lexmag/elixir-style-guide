@@ -747,14 +747,6 @@ They are provided here for documentation purposes and for those maintaining olde
 
 ### Parentheses
 
-* <a name="snake-case-dirs-files"></a>
-  Use `snake_case` for naming directories and files, for example `lib/my_app/task_server.ex`.
-  <sup>[[link](#snake-case-dirs-files)]</sup>
-
-* <a name="one-letter-var"></a>
-  Avoid using one-letter variable names.
-  <sup>[[link](#one-letter-var)]</sup>
-
 * <a name="zero-arity-parens"></a>
   Parentheses are a must for __local__ or __imported__ zero-arity function calls.
   <sup>[[link](#zero-arity-parens)]</sup>
