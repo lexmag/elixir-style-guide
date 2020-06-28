@@ -445,7 +445,7 @@ They are provided here for documentation purposes and for those maintaining olde
 
   ```elixir
   # Bad
-  def register_attribute(name, opts) do
+  def register_attribute(name, opts) do 
       register_attribute(__MODULE__, name, opts)
   end
 
@@ -453,6 +453,7 @@ They are provided here for documentation purposes and for those maintaining olde
   def register_attribute(name, opts) do
     register_attribute(__MODULE__, name, opts)
   end
+
   ```
 
 * <a name="spaces-in-code"></a>
@@ -481,6 +482,7 @@ They are provided here for documentation purposes and for those maintaining olde
   # Bad
   angle = - 45
   ^ result = Float.parse("42.01")
+  2 in 1.. 5
 
   # Good
   angle = -45
