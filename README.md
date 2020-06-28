@@ -32,17 +32,17 @@ The following section are automatically applied by the code formatter in Elixir 
 
   ```elixir
   # Bad
-  String.downcase(String.strip(input))
+  String.downcase(String.trim(input))
 
   # Good
-  input |> String.strip() |> String.downcase()
+  input |> String.trim() |> String.downcase()
   ```
 
   For a multi-line pipeline, place each function call on a new line, and retain the level of indentation.
 
   ```elixir
   input
-  |> String.strip()
+  |> String.trim()
   |> String.downcase()
   |> String.slice(1, 3)
 
@@ -52,10 +52,10 @@ The following section are automatically applied by the code formatter in Elixir 
 
   ```elixir
   # Bad
-  result = input |> String.strip()
+  result = input |> String.trim()
 
   # Good
-  result = String.strip(input)
+  result = String.trim(input)
   ```
 
 * <a name="anonymous-pipeline"></a>
@@ -562,7 +562,7 @@ They are provided here for documentation purposes and for those maintaining olde
     mailbox
 
   input
-    |> String.strip()
+    |> String.trim()
     |> String.downcase()
 
   defp valid_identifier_char?(char)
@@ -592,7 +592,7 @@ They are provided here for documentation purposes and for those maintaining olde
       mailbox
 
   input
-  |> String.strip()
+  |> String.trim()
   |> String.downcase()
 
   defp valid_identifier_char?(char)
@@ -686,7 +686,7 @@ They are provided here for documentation purposes and for those maintaining olde
 
   ```elixir
   input
-  |> String.strip()
+  |> String.trim()
   |> String.downcase()
   |> String.slice(1, 3)
   ```
@@ -778,12 +778,12 @@ They are provided here for documentation purposes and for those maintaining olde
   ```elixir
   # Bad
   input
-  |> String.strip
+  |> String.trim
   |> decode
 
   # Good
   input
-  |> String.strip()
+  |> String.trim()
   |> decode()
   ```
 
@@ -898,7 +898,7 @@ They are provided here for documentation purposes and for those maintaining olde
     <> mailbox
 
   input |>
-    String.strip() |>
+    String.trim() |>
     decode()
 
   # Good
@@ -907,7 +907,7 @@ They are provided here for documentation purposes and for those maintaining olde
     mailbox
 
   input
-  |> String.strip()
+  |> String.trim()
   |> decode()
   ```
 
