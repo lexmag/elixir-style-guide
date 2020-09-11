@@ -196,6 +196,10 @@ The following section are automatically applied by the code formatter in Elixir 
     # ...
   end
 
+  defp _parse_contents(data) do
+    # ...
+  end
+
   # Good
   :no_match
   :error
@@ -206,6 +210,10 @@ The following section are automatically applied by the code formatter in Elixir 
   @version "0.0.1"
 
   def read_file(path) do
+    # ...
+  end
+
+  defp parse_contents(data) do
     # ...
   end
   ```
