@@ -196,7 +196,7 @@ The following section are automatically applied by the code formatter in Elixir 
     # ...
   end
 
-  defp _parse_contents(data) do
+  def _parse_contents(data) do
     # ...
   end
 
@@ -213,7 +213,8 @@ The following section are automatically applied by the code formatter in Elixir 
     # ...
   end
 
-  defp parse_contents(data) do
+  @doc false
+  def parse_contents(data) do
     # ...
   end
   ```
